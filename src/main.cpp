@@ -5,6 +5,7 @@
 
 //TODO: declare variables for cross-task communication
 unsigned char sonar_distance;
+unsigned char i;
 /* You have 5 tasks to implement for this lab */
 #define NUM_TASKS 2
 
@@ -125,31 +126,36 @@ int TickFtn_Display(int state){
     switch (state)
     {
       case display_off:
-      PORTB = SetBit(PORTB,5,1);
+      i = 1;
+      // PORTB = SetBit(PORTB,5,1);
       state = display_one;
       break;
 
       case display_one:
       // outNum(3);
-      PORTB = SetBit(PORTB,4,1);
+      // PORTB = SetBit(PORTB,4,1);
+      i = 1;
       state = display_two;
       break;
 
       case display_two:
       // outNum(sonar_distance);
-      PORTB = SetBit(PORTB,3,1);
+      // PORTB = SetBit(PORTB,3,1);
+      i = 1;
       state = display_two;
       break;
 
       case display_three:
       // outNum(sonar_distance);
-      PORTB = SetBit(PORTB,2,1);
+      // PORTB = SetBit(PORTB,2,1);
+      i = 1;
       state = display_two;
       break;
 
       case display_four:
       // outNum(sonar_distance);
-      PORTB = SetBit(PORTB,5,1);
+      // PORTB = SetBit(PORTB,5,1);
+      i = 1;
       state = display_one;
       break;
       default:
@@ -164,6 +170,7 @@ int TickFtn_Display(int state){
       break;
 
       case display_one:
+      PORTB = SetBit(PORTB,5,1);
       outNum(sonar_distance);
       PORTB = SetBit(PORTB,2,0);
       //state = display_two;
@@ -171,6 +178,9 @@ int TickFtn_Display(int state){
 
       case display_two:
       outNum(sonar_distance);
+      if(i>0){
+        
+      }
       PORTB = SetBit(PORTB,3,0);
       //state = display_two;
       break;
